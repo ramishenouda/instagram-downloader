@@ -31,42 +31,87 @@ function App() {
   };
 
   return (
-    <div className="container">
-      <div className="card">
-        <h1>📸 Instagram Video Downloader</h1>
-        <p className="subtitle">Paste a link, download the video</p>
+    <div className="app">
+      {/* Header */}
+      <header className="header">
+        <div className="header-content">
+          <div className="logo-section">
+            <div className="app-icon">📸</div>
+            <div>
+              <h1 className="app-title">Instagram Video Downloader</h1>
+              <p className="app-subtitle">Download videos, reels & posts instantly</p>
+            </div>
+          </div>
+          <a href="https://github.com/ramishenouda/instagram-downloader" className="github-link" target="_blank" rel="noopener noreferrer">
+            <span>⭐ Open Source</span>
+          </a>
+        </div>
+      </header>
 
-        <form onSubmit={handleDownload}>
-          <div className="form-group">
-            <input
-              type="text"
-              placeholder="https://instagram.com/p/..."
-              value={url}
-              onChange={(e) => setUrl(e.target.value)}
-              disabled={loading}
-              className="input-field"
-            />
+      {/* Main Container */}
+      <div className="container">
+        <div className="card">
+          {/* Features */}
+          <div className="features">
+            <div className="feature-item">
+              <span className="feature-icon">✨</span>
+              <span>Simple & Fast</span>
+            </div>
+            <div className="feature-item">
+              <span className="feature-icon">🔒</span>
+              <span>Privacy First</span>
+            </div>
+            <div className="feature-item">
+              <span className="feature-icon">🚀</span>
+              <span>Self-Hosted</span>
+            </div>
           </div>
 
-          {error && <div className="error-message">{error}</div>}
+          {/* Download Form */}
+          <form onSubmit={handleDownload} className="download-form">
+            <div className="form-group">
+              <label htmlFor="url-input" className="input-label">Paste Instagram URL</label>
+              <input
+                id="url-input"
+                type="text"
+                placeholder="https://instagram.com/p/... or /reels/..."
+                value={url}
+                onChange={(e) => setUrl(e.target.value)}
+                disabled={loading}
+                className="input-field"
+              />
+            </div>
 
-          <button
-            type="submit"
-            disabled={loading || !url.trim()}
-            className="btn btn-primary btn-full"
-          >
-            {loading ? (
-              <>
-                <span className="spinner"></span> Fetching...
-              </>
-            ) : (
-              'Download'
-            )}
-          </button>
-        </form>
+            {error && <div className="error-message">{error}</div>}
 
-        {result && <VideoResult videoUrl={result.videoUrl} videoTitle={result.title} />}
+            <button
+              type="submit"
+              disabled={loading || !url.trim()}
+              className="btn btn-primary btn-full"
+            >
+              {loading ? (
+                <>
+                  <span className="spinner"></span> Downloading...
+                </>
+              ) : (
+                '⬇️ Download'
+              )}
+            </button>
+          </form>
+
+          {/* Video Result */}
+          {result && <VideoResult videoUrl={result.videoUrl} videoTitle={result.title} />}
+        </div>
       </div>
+
+      {/* Footer */}
+      <footer className="footer">
+        <p>
+          Made with ❤️ • 
+          <a href="https://github.com/ramishenouda/instagram-downloader" target="_blank" rel="noopener noreferrer"> GitHub </a>
+          • Open Source & Self-Hosted
+        </p>
+      </footer>
     </div>
   );
 }
