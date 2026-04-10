@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  # Cobalt API (Instagram downloader backend)
+  cobalt:
+    image: ghcr.io/imputnet/cobalt:latest
+    container_name: instagram-cobalt
+    ports:
+      - "5000:8000"
+    environment:
+      - API_URL=http://cobalt:8000
+      - API_PORT=8000
+      - CORS_WILDCARD=1
+    restart: unless-stopped
+
+  # Node.js proxy server (routes frontend requests to Cobalt)
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: instagram-downloader-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - COBALT_URL=http://cobalt:8000
+    depends_on:
+      - cobalt
+    restart: unless-stopped
+    volumes:
+      # Optional: for development
+      - ./backend/proxy.js:/app/proxy.js
+
+  # Frontend React app
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: instagram-downloader-frontend
+    ports:
+      - "80:3000"
+    depends_on:
+      - backend
+    environment:
+      - VITE_API_URL=http://localhost:8000/api/download
+    restart: unless-stopped
+
+volumes: {}
