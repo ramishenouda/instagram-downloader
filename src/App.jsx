@@ -36,7 +36,7 @@ function App() {
       <header className="header">
         <div className="header-content">
           <div className="logo-section">
-            <div className="app-icon">📸</div>
+            <img src="/logo.svg" alt="VideoSnap Logo" className="app-icon-img" />
             <div>
               <h1 className="app-title">VideoSnap</h1>
               <p className="app-subtitle">Download Instagram videos, reels & posts instantly</p>
