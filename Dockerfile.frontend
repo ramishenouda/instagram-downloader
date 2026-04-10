@@ -8,6 +8,10 @@ RUN npm ci
 
 COPY . .
 
+# VITE_* vars must be available at build time (they are baked into the JS bundle)
+ARG VITE_API_URL
+ENV VITE_API_URL=$VITE_API_URL
+
 # Build the app
 RUN npm run build
 
