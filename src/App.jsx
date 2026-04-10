@@ -38,8 +38,8 @@ function App() {
           <div className="logo-section">
             <div className="app-icon">📸</div>
             <div>
-              <h1 className="app-title">Instagram Video Downloader</h1>
-              <p className="app-subtitle">Download videos, reels & posts instantly</p>
+              <h1 className="app-title">VideoSnap</h1>
+              <p className="app-subtitle">Download Instagram videos, reels & posts instantly</p>
             </div>
           </div>
           <a href="https://github.com/ramishenouda/instagram-downloader" className="github-link" target="_blank" rel="noopener noreferrer">

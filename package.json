@@ -1,7 +1,7 @@
 {
-  "name": "instagram-downloader",
+  "name": "videosnap",
   "version": "1.0.0",
-  "description": "",
+  "description": "VideoSnap - Free Instagram video downloader",
   "main": "index.js",
   "scripts": {
     "dev": "vite",

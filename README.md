@@ -1,4 +1,4 @@
-# 📸 Instagram Video Downloader
+# � VideoSnap - Instagram Video Downloader
 
 <div align="center">
 
