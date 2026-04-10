@@ -11,13 +11,7 @@ export default function VideoResult({ videoUrl, videoTitle }) {
 
   return (
     <div className="video-result">
-      <div className="video-preview">
-        <video controls width="100%">
-          <source src={videoUrl} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
-      <div className="button-group">
+      <div className="action-buttons-result button-group">
         <a
           href={videoUrl}
           download={videoTitle || 'instagram-video'}
@@ -28,6 +22,12 @@ export default function VideoResult({ videoUrl, videoTitle }) {
         <button onClick={handleCopyLink} className="btn btn-secondary">
           {copied ? 'Copied!' : 'Copy Link'}
         </button>
+      </div>
+      <div className="video-preview">
+        <video controls width="100%">
+          <source src={videoUrl} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
       </div>
     </div>
   );

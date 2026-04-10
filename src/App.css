@@ -274,8 +274,12 @@ body {
 
 /* Video Result */
 .video-result {
-  margin-top: 30px;
+  margin-top: 10px;
   animation: slideUp 0.5s ease-out;
+
+  .action-buttons-result{
+    margin-bottom: 10px;
+  }
 }
 
 .video-preview {
