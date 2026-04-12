@@ -1,17 +1,15 @@
-// Use backend API server
 const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
-const API_URL = `${API_BASE}/api/instagram`;
+const API_URL = `${API_BASE}/api/youtube`;
 
-const INSTAGRAM_URL_PATTERN = /^https?:\/\/(www\.)?instagram\.com\//i;
+const YOUTUBE_URL_PATTERN = /^https?:\/\/(www\.)?(youtube\.com|youtu\.be)\//i;
 
-export async function fetchInstagramVideo(url) {
-  // Validate URL
+export async function fetchYoutubeVideo(url, quality = '1080') {
   if (!url || !url.trim()) {
-    throw new Error('Please enter an Instagram URL');
+    throw new Error('Please enter a YouTube URL');
   }
 
-  if (!INSTAGRAM_URL_PATTERN.test(url)) {
-    throw new Error('Please enter a valid Instagram URL (instagram.com)');
+  if (!YOUTUBE_URL_PATTERN.test(url)) {
+    throw new Error('Please enter a valid YouTube URL (youtube.com or youtu.be)');
   }
 
   try {
@@ -22,6 +20,7 @@ export async function fetchInstagramVideo(url) {
       },
       body: JSON.stringify({
         url: url.trim(),
+        quality,
       }),
     });
 
@@ -41,11 +40,15 @@ export async function fetchInstagramVideo(url) {
 
     throw new Error('Invalid response format from backend');
   } catch (err) {
-    // Re-throw with better error message if it's already a custom error
-    if (err.message.startsWith('Invalid') || err.message.startsWith('Could') || err.message.startsWith('Post') || err.message.startsWith('Photos') || err.message.startsWith('Please') || err.message.startsWith('API')) {
+    if (
+      err.message.startsWith('Please') ||
+      err.message.startsWith('Video') ||
+      err.message.startsWith('Could') ||
+      err.message.startsWith('Invalid') ||
+      err.message.startsWith('HTTP')
+    ) {
       throw err;
     }
-    // Network or other errors
     throw new Error(`Failed to fetch video: ${err.message}`);
   }
 }

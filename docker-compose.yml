@@ -1,7 +1,24 @@
-version: '3.8'
-
 services:
-  # Cobalt API (Instagram downloader backend)
+  # PostgreSQL database for analytics/logging
+  db:
+    image: postgres:16-alpine
+    container_name: instagram-downloader-db
+    environment:
+      - POSTGRES_DB=videosnap
+      - POSTGRES_USER=videosnap
+      - POSTGRES_PASSWORD=videosnap_secure_password
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U videosnap"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Cobalt API (used for Instagram downloads)
   cobalt:
     image: ghcr.io/imputnet/cobalt:latest
     container_name: instagram-cobalt
@@ -23,8 +40,12 @@ services:
       - "127.0.0.1:8000:8000"
     environment:
       - COBALT_URL=http://cobalt:8000
+      - DATABASE_URL=postgresql://videosnap:videosnap_secure_password@db:5432/videosnap
     depends_on:
-      - cobalt
+      db:
+        condition: service_healthy
+      cobalt:
+        condition: service_started
     restart: unless-stopped
     volumes:
       # Optional: for development
@@ -37,7 +58,7 @@ services:
       dockerfile: Dockerfile.frontend
       args:
         # VITE_* vars are baked into the bundle at build time, not runtime
-        - VITE_API_URL=https://videosnap.fun/api/download
+        - VITE_API_BASE_URL=https://videosnap.fun
     container_name: instagram-downloader-frontend
     ports:
       - "127.0.0.1:3000:3000"
@@ -45,4 +66,5 @@ services:
       - backend
     restart: unless-stopped
 
-volumes: {}
+volumes:
+  postgres_data:
