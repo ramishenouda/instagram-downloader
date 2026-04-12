@@ -91,6 +91,33 @@ export default function Stats() {
                 </div>
               </div>
 
+              {/* Page Views by Platform */}
+              {stats.pageviewsByPlatform && stats.pageviewsByPlatform.length > 0 && (
+                <div className="stats-section">
+                  <h2>Visits by Platform</h2>
+                  <table className="stats-table">
+                    <thead>
+                      <tr>
+                        <th>Platform</th>
+                        <th>Page Views</th>
+                        <th>Unique Visitors</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {stats.pageviewsByPlatform.map((p) => (
+                        <tr key={p.platform}>
+                          <td className="platform-name">
+                            {p.platform === 'youtube' ? '▶️ YouTube' : '📸 Instagram'}
+                          </td>
+                          <td>{p.views}</td>
+                          <td>{p.unique_sessions}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+
               {/* Downloads by Platform */}
               <div className="stats-section">
                 <h2>Downloads by Platform</h2>

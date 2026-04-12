@@ -9,7 +9,7 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 
-COPY proxy.js .
+COPY *.js .
 
 EXPOSE 8000
 

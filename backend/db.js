@@ -96,6 +96,7 @@ async function logDownload(platform, urlHash, quality, ip, fileSize, userAgent, 
 // Get analytics stats
 async function getStats(days = 7) {
   try {
+    // Overall pageviews
     const result = await pool.query(`
       SELECT 
         COUNT(*) as total_pageviews,
@@ -105,6 +106,19 @@ async function getStats(days = 7) {
       WHERE timestamp > NOW() - INTERVAL '${days} days'
     `);
 
+    // Pageviews by platform
+    const pageviewsByPlatform = await pool.query(`
+      SELECT 
+        page as platform,
+        COUNT(*) as views,
+        COUNT(DISTINCT session_id) as unique_sessions
+      FROM page_views
+      WHERE timestamp > NOW() - INTERVAL '${days} days'
+      GROUP BY page
+      ORDER BY views DESC
+    `);
+
+    // Downloads by platform (already exists)
     const downloads = await pool.query(`
       SELECT 
         platform,
@@ -130,6 +144,7 @@ async function getStats(days = 7) {
 
     return {
       pageviews: result.rows[0],
+      pageviewsByPlatform: pageviewsByPlatform.rows,
       downloads: downloads.rows,
       topCountries: topCountries.rows,
     };

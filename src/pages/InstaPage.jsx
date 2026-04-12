@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchInstagramVideo } from '../api/instagram';
 import VideoResult from '../components/VideoResult';
@@ -8,6 +8,24 @@ export default function InstaPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [result, setResult] = useState(null);
+
+  // Log pageview on mount
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000'}/api/pageview`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ page: 'instagram' }),
+    }).catch(console.error);
+  }, []);
+
+  // Log pageview on mount
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000'}/api/pageview`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ page: 'instagram' }),
+    }).catch(console.error);
+  }, []);
 
   const handleDownload = async (e) => {
     e.preventDefault();
