@@ -28,5 +28,5 @@ COPY --from=builder /app/dist ./dist
 
 EXPOSE 3000
 
-# Serve the built app
-CMD ["serve", "-s", "dist", "-l", "3000"]
+# Serve the built app as SPA — rewrites all routes to index.html, no trailing slash redirects
+CMD ["serve", "-s", "dist", "-l", "3000", "--no-request-logging"]
