@@ -450,8 +450,8 @@ body {
 }
 
 .platform-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  justify-content: center;
   gap: 24px;
   max-width: 640px;
   margin: 0 auto;
@@ -461,13 +461,14 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 36px 28px;
-  border-radius: 16px;
+  padding: 48px 56px;
+  border-radius: 20px;
   background: white;
   text-decoration: none;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
   border: 2px solid transparent;
+  min-width: 280px;
 }
 
 .platform-card:hover {
@@ -484,21 +485,21 @@ body {
 }
 
 .platform-card-icon {
-  font-size: 48px;
+  font-size: 64px;
   margin-bottom: 16px;
 }
 
 .platform-card-title {
-  font-size: 22px;
+  font-size: 26px;
   font-weight: 700;
   color: #222;
   margin-bottom: 8px;
 }
 
 .platform-card-desc {
-  font-size: 14px;
+  font-size: 15px;
   color: #777;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   text-align: center;
 }
 

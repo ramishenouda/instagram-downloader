@@ -85,10 +85,9 @@ export default function VideoResult({ videoUrl, videoTitle }) {
       )}
 
       <div className="video-preview">
-        <video controls width="100%">
-          <source src={videoBlobUrl || videoUrl} />
-          Your browser does not support the video tag.
-        </video>
+        {videoBlobUrl && (
+          <video controls src={videoBlobUrl} width="100%" />
+        )}
       </div>
     </div>
   );

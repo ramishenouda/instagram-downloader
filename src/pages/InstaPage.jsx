@@ -184,17 +184,6 @@ export default function InstaPage() {
             <strong>Personal Use Only:</strong> This tool is for downloading your own content or content with permission. Do not use to repost content as your own.
           </p>
         </div>
-
-        {/* Related Tools */}
-        <div className="card" style={{ marginTop: '2rem' }}>
-          <h2>Also Available</h2>
-          <p>Need to download from other platforms? Check out:</p>
-          <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem', flexWrap: 'wrap' }}>
-            <Link to="/youtube" className="btn btn-secondary" style={{ textDecoration: 'none' }}>
-              ▶️ Download YouTube Videos
-            </Link>
-          </div>
-        </div>
       </div>
 
       <footer className="footer">

@@ -1,8 +1,8 @@
 // Metadata configuration for each page
 export const metadataConfig = {
   '/': {
-    title: 'VideoSnap - Download Instagram & YouTube Videos Free',
-    description: 'Free video downloader for Instagram and YouTube. Download reels, posts, videos, and audio without sign-up. Private, fast, and open-source.',
+    title: 'VideoSnap - Free Instagram Video Downloader',
+    description: 'Free Instagram downloader for reels, posts, stories, and albums. No sign-up, no watermarks. Private, fast, and open-source.',
     ogUrl: 'https://videosnap.fun/',
   },
   '/insta': {
@@ -10,11 +10,7 @@ export const metadataConfig = {
     description: 'Download Instagram videos, reels, stories, and posts instantly. No watermarks, no sign-up. Fast, private, and free.',
     ogUrl: 'https://videosnap.fun/insta',
   },
-  '/youtube': {
-    title: 'Download YouTube Videos & Shorts Free in HD | VideoSnap',
-    description: 'Download YouTube videos, shorts, and audio (MP3) in multiple qualities. Free, fast, and completely private.',
-    ogUrl: 'https://videosnap.fun/youtube',
-  },
+
   '/stats': {
     title: 'Usage Statistics | VideoSnap',
     description: 'See how many videos are downloaded on VideoSnap. Real-time statistics and download trends.',

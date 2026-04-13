@@ -57,7 +57,6 @@ services:
       context: .
       dockerfile: Dockerfile.frontend
       args:
-        # VITE_* vars are baked into the bundle at build time, not runtime
         - VITE_API_BASE_URL=https://videosnap.fun
     container_name: instagram-downloader-frontend
     ports:

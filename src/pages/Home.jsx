@@ -18,7 +18,7 @@ export default function Home() {
     {
       id: 3,
       question: 'What can I download?',
-      answer: 'Instagram: Posts, Reels, Stories, and Albums. YouTube: Videos, Shorts, and Playlists. You can also download audio-only from YouTube videos.',
+      answer: 'Instagram: Posts, Reels, Stories, and Albums. More platforms coming soon!',
     },
     {
       id: 4,
@@ -69,13 +69,6 @@ export default function Home() {
               <span className="platform-card-icon">📸</span>
               <h3 className="platform-card-title">Instagram</h3>
               <p className="platform-card-desc">Reels, posts &amp; stories</p>
-              <span className="platform-card-cta">Download →</span>
-            </Link>
-
-            <Link to="/youtube" className="platform-card platform-card--youtube">
-              <span className="platform-card-icon">▶️</span>
-              <h3 className="platform-card-title">YouTube</h3>
-              <p className="platform-card-desc">Videos, shorts &amp; audio</p>
               <span className="platform-card-cta">Download →</span>
             </Link>
           </div>
